@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MediRule AI - Rule-Based Medical Diagnosis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <div class="page-grid"></div>
+  <header class="site-header">
+    <div class="brand">MediRule AI</div>
+    <nav class="main-nav">
+      <a class="active nav-link" href="#" data-target="heroSection">Platform</a>
+      <a class="nav-link" href="#" data-target="engineSection">Algorithm</a>
+      <a class="nav-link" href="#" data-target="symptomsSection">Security</a>
+      <a class="nav-link" href="#" data-target="footerSection">Support</a>
+    </nav>
+    <button class="btn btn-small" id="headerGetStartedBtn">Get Started</button>
+  </header>
+
+  <main>
+    <section class="hero" id="heroSection">
+      <h1>MediRule AI</h1>
+      <p>The Intersection of Logic and Healthcare.</p>
+      <div class="hero-actions">
+        <button class="btn" id="heroGetStartedBtn">Get Started</button>
+        <button class="btn btn-ghost" id="viewClinicalSpecsBtn">View Clinical Specs</button>
+      </div>
+      <div class="hero-visual">
+        <div class="hud-panel panel-left"></div>
+        <div class="hud-panel panel-right"></div>
+        <div class="scan-core"></div>
+        <article class="hero-console">
+          <span class="hero-console-label">Live Rule Engine</span>
+          <h3>Clinical Signal Processing Hub</h3>
+          <p>
+            The platform maps symptom combinations to deterministic rules,
+            highlights missing indicators, and returns explainable disease suggestions.
+          </p>
+          <div class="hero-console-grid">
+            <div>
+              <small>Rule Coverage</small>
+              <strong>24 Active Rules</strong>
+            </div>
+            <div>
+              <small>Supported Symptoms</small>
+              <strong>49 Selectable Inputs</strong>
+            </div>
+            <div>
+              <small>Validation Layer</small>
+              <strong>Input Guard Enabled</strong>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="engine" id="engineSection">
+      <div class="section-title-wrap">
+        <h2>How The Rule Engine Works</h2>
+        <p>
+          Deterministic logic steps convert selected symptoms into explainable and auditable diagnostic suggestions.
+        </p>
+      </div>
+      <div class="engine-carousel" id="engineCarousel">
+        <button type="button" class="engine-nav prev" id="enginePrevBtn" aria-label="Previous step">&#10094;</button>
+        <div class="engine-window">
+          <div class="engine-track" id="engineTrack">
+            <article class="engine-card">
+              <span>01. SYMPTOM INTAKE</span>
+              <h3>Input Validation</h3>
+              <p>User selects 2 to 6 valid symptoms. Unsupported inputs are rejected before diagnosis.</p>
+              <em>GUARDRAIL ENABLED</em>
+            </article>
+            <article class="engine-card">
+              <span>02. RULE MATCHING</span>
+              <h3>Deterministic Rules</h3>
+              <p>System checks exact symptom combinations first, then tries closest partial rules when exact match is absent.</p>
+              <em>EXPLAINABLE LOGIC</em>
+            </article>
+            <article class="engine-card">
+              <span>03. SAFETY LAYER</span>
+              <h3>Confidence & Warnings</h3>
+              <p>Confidence is adjusted for unrelated symptoms and warnings are emitted to avoid blind trust in output.</p>
+              <em>RISK-AWARE OUTPUT</em>
+            </article>
+            <article class="engine-card">
+              <span>04. ACTIONABLE RESULT</span>
+              <h3>Clinical Suggestion</h3>
+              <p>Result includes disease name, matched rule, suggested tests, specialist, and optional missing symptom hints.</p>
+              <em>READY FOR REVIEW</em>
+            </article>
+          </div>
+        </div>
+        <button type="button" class="engine-nav next" id="engineNextBtn" aria-label="Next step">&#10095;</button>
+      </div>
+      <div class="engine-dots" id="engineDots">
+        <button class="engine-dot active" type="button" data-slide="0" aria-label="Go to step 1"></button>
+        <button class="engine-dot" type="button" data-slide="1" aria-label="Go to step 2"></button>
+        <button class="engine-dot" type="button" data-slide="2" aria-label="Go to step 3"></button>
+        <button class="engine-dot" type="button" data-slide="3" aria-label="Go to step 4"></button>
+      </div>
+      <div class="engine-example">
+        <span>Example Rule Flow</span>
+        <p>Input: fever + cough + fatigue -> Match: fever + cough -> Disease: Influenza -> Warning: fatigue is extra for top exact rule.</p>
+      </div>
+    </section>
+
+    <section class="symptoms" id="symptomsSection">
+      <h2>Symptom Analysis</h2>
+      <p>Use Diagnosis Mode for symptom-based rules. Use Learn Mode only to read disease information.</p>
+      <div class="symptom-shell">
+        <div class="mode-switch" id="modeSwitch">
+          <button class="mode-btn active" type="button" data-mode="diagnosis">Diagnosis Mode</button>
+          <button class="mode-btn" type="button" data-mode="learn">Learn Mode</button>
+        </div>
+
+        <div id="diagnosisModePanel">
+          <h3 class="disease-selector-title">Diagnosis Mode (Symptoms Only)</h3>
+          <p class="disease-selector-subtitle">Select 2 to 6 symptoms from rule-supported options, then run diagnosis.</p>
+          <div class="helper-card">
+            <h4>Not Sure What To Choose?</h4>
+            <p>Type your problem in simple words. The assistant will suggest symptoms automatically.</p>
+            <div class="helper-actions">
+              <input
+                type="text"
+                id="symptomHelperInput"
+                class="symptom-search"
+                placeholder="Example: fever with cough and body aches"
+              />
+              <button type="button" class="btn btn-small" id="suggestSymptomsBtn">Suggest Symptoms</button>
+            </div>
+            <p class="helper-status" id="helperStatusText">Helper ready.</p>
+            <div class="preset-row" id="presetRow">
+              <button type="button" class="preset-btn" data-preset="flu_like">Flu Like</button>
+              <button type="button" class="preset-btn" data-preset="respiratory">Breathing</button>
+              <button type="button" class="preset-btn" data-preset="digestive">Stomach</button>
+              <button type="button" class="preset-btn" data-preset="urinary">Urinary</button>
+              <button type="button" class="preset-btn" data-preset="skin">Skin</button>
+            </div>
+          </div>
+          <input
+            type="text"
+            id="symptomSearchInput"
+            class="symptom-search"
+            placeholder="Search symptoms (example: fever, cough, chest pain)"
+          />
+          <p class="disease-selector-subtitle" id="selectedSymptomsInfo">Selected symptoms: none</p>
+          <div class="symptom-tabs" id="symptomTabs"></div>
+          <div class="diagnosis-actions">
+            <button class="btn run-btn" id="runDiagnosisBtn">Run Diagnostic Algorithm</button>
+            <button class="btn btn-ghost run-btn" id="resetSelectionBtn" type="button">Reset Selection</button>
+          </div>
+          <div class="helper-suggest-box" id="helperSuggestBox">
+            <p class="helper-status" id="helperSuggestText">No completion suggestion yet.</p>
+            <button type="button" class="btn btn-small" id="applySuggestionBtn">Apply Missing Symptom Suggestion</button>
+          </div>
+        </div>
+
+        <div id="learnModePanel" class="hidden-panel">
+          <h3 class="disease-selector-title">Learn Mode (Disease Library)</h3>
+          <p class="disease-selector-subtitle">Select a disease to learn about symptoms, causes, tests, and care. This does not run diagnosis.</p>
+          <div class="disease-tabs" id="diseaseTabs"></div>
+          <article class="learn-card">
+            <h4 id="learnDiseaseTitle">Select a disease to learn</h4>
+            <p id="learnDiseaseSummary">Disease profile will appear here.</p>
+            <ul id="learnDiseaseList"></ul>
+          </article>
+        </div>
+
+        <div class="terminal-output" id="terminalOutput"></div>
+      </div>
+    </section>
+
+    <section class="results">
+      <aside class="status-panel">
+        <h3>Analysis Status</h3>
+        <div class="meter">
+          <div class="meter-header">
+            <span>ANALYSIS CONFIDENCE</span>
+            <strong id="confidenceValue">86.4%</strong>
+          </div>
+          <div class="meter-bar"><span style="width: 86.4%;"></span></div>
+        </div>
+        <div class="meter">
+          <div class="meter-header">
+            <span>LOGIC INTEGRITY</span>
+            <strong>100%</strong>
+          </div>
+          <div class="meter-bar"><span style="width: 100%;"></span></div>
+        </div>
+      </aside>
+      <article class="diagnosis-card">
+        <div class="tag-row">
+          <span class="tag">PRIMARY DIAGNOSIS</span>
+          <span class="tag verified">VERIFIED</span>
+        </div>
+        <h2 id="diagnosisTitle">Acute Rhinosinusitis</h2>
+        <div class="diagnosis-grid">
+          <div>
+            <h4>DETECTED CONDITION</h4>
+            <p id="diagnosisCondition">
+              Inflammation of the paranasal sinuses lasting less than 4 weeks.
+              Logic-engine identifies viral etiology with 92% probability.
+            </p>
+          </div>
+          <div>
+            <h4>CLINICAL SEVERITY</h4>
+            <span class="severity" id="severityValue">Moderate Level 2/3</span>
+          </div>
+        </div>
+        <div class="recommendation">
+          <h4>RECOMMENDED ACTION</h4>
+          <ul id="recommendationList">
+            <li>Initiate supportive care with hydration and humidification.</li>
+            <li>Monitor temperature every 4 hours for potential bacterial transition.</li>
+            <li>Consultation recommended if symptoms persist over 10 days.</li>
+          </ul>
+        </div>
+        <div class="pathway">
+          <span>Secondary Inference Pathway</span>
+          <small>Previous logic layer required</small>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer id="footerSection">
+    <strong>MediRule AI</strong>
+    <div class="footer-links">
+      <a href="#">MEDICAL DISCLAIMER</a>
+      <a href="#">PRIVACY PROTOCOL</a>
+      <a href="#">TERMS OF SERVICE</a>
+    </div>
+    <p>
+      MEDICAL DISCLAIMER: MEDIRULE AI PROVIDES CLINICAL DECISION SUPPORT PURPOSES ONLY
+      AND DOES NOT CONSTITUTE PROFESSIONAL MEDICAL ADVICE, DIAGNOSIS, OR TREATMENT.
+    </p>
+    <p>&copy; 2026 MEDIRULE AI. CLINICAL PRECISION VIA LOGIC-BASED INFERENCE.</p>
+  </footer>
+
+  <nav class="mobile-bottom-nav" id="mobileBottomNav" aria-label="Mobile navigation">
+    <button type="button" class="mobile-tab active" data-tab="home" data-target="heroSection">Home</button>
+    <button type="button" class="mobile-tab" data-tab="algorithm" data-target="engineSection">Algorithm</button>
+    <button type="button" class="mobile-tab" data-tab="diagnose" data-target="symptomsSection" data-mode="diagnosis">Diagnose</button>
+    <button type="button" class="mobile-tab" data-tab="learn" data-target="symptomsSection" data-mode="learn">Learn</button>
+  </nav>
+
+  <script src="script.js"></script>
+</body>
+</html>
