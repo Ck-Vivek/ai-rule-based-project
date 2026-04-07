@@ -83,7 +83,6 @@ footer {
   font-size: 0.95rem;
   transition: 0.2s ease;
 }
-
 .main-nav a:hover,
 .main-nav a.active {
   color: var(--text);
@@ -891,7 +890,206 @@ footer {
   margin: 80px auto 26px;
   padding-top: 24px;
   border-top: 1px solid rgba(95, 176, 217, 0.22);
+  text-align: left;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 18px;
+  margin-bottom: 18px;
+  align-items: start;
+}
+
+.footer-topline {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.footer-about-card,
+.footer-team-card {
+  border: 1px solid rgba(89, 175, 219, 0.24);
+  border-radius: 14px;
+  padding: 18px;
+  background: linear-gradient(180deg, rgba(7, 20, 48, 0.94), rgba(5, 14, 32, 0.9));
+  box-shadow: inset 0 0 0 1px rgba(104, 184, 224, 0.08);
+}
+
+.footer-team-card {
+  align-self: start;
+}
+
+.footer-kicker {
+  display: inline-block;
+  margin-bottom: 0;
+  color: #84ffa1;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.footer-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  background: rgba(94, 255, 203, 0.08);
+  border: 1px solid rgba(94, 255, 203, 0.18);
+  color: #bafcff;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.footer-about-card h3 {
+  margin: 0 0 10px;
+  font-family: "Sora", sans-serif;
+  font-size: clamp(1.6rem, 2.7vw, 2.25rem);
+  color: #8ef3ff;
+}
+
+.footer-lead {
+  margin: 0 0 14px;
+  color: #a8c9d9;
+  line-height: 1.7;
+  max-width: 44rem;
+}
+
+.footer-highlights {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.footer-highlight {
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.footer-highlight strong {
+  display: block;
+  margin-bottom: 6px;
+  color: #ecfdff;
+  font-size: 0.9rem;
+}
+
+.footer-highlight span {
+  display: block;
+  color: #8eb1c2;
+  line-height: 1.55;
+  font-size: 0.88rem;
+}
+
+.footer-disclaimer {
+  margin: 0;
+  color: #7c9eb1;
+  line-height: 1.6;
+}
+
+.team-grid {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  justify-content: center;
+}
+
+.footer-team-card .team-grid {
+  padding-top: 2px;
+}
+
+.team-grid::-webkit-scrollbar {
+  display: none;
+}
+
+.team-member-card {
+  border: 1px solid rgba(104, 184, 225, 0.22);
+  border-radius: 10px;
+  padding: 14px 12px;
+  background: linear-gradient(180deg, rgba(8, 25, 53, 0.95), rgba(9, 31, 64, 0.82));
+  position: relative;
+  overflow: hidden;
+  min-height: 92px;
+  display: flex;
+  align-items: flex-end;
+  min-width: 180px;
+  flex: 0 0 180px;
+  scroll-snap-align: start;
+}
+
+.team-member-card strong {
+  display: block;
+  color: #d9f6ff;
+  font-size: 0.98rem;
+  position: relative;
+  z-index: 1;
+}
+
+.team-member-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 18% 20%, rgba(123, 244, 167, 0.15), transparent 35%),
+    radial-gradient(circle at 80% 20%, rgba(90, 223, 255, 0.12), transparent 35%);
+}
+
+.team-initials {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #6de7ff, #84ffa1);
+  color: #062033;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  box-shadow: 0 0 14px rgba(109, 231, 255, 0.28);
+  z-index: 1;
+}
+
+.footer-links-row {
+  margin-top: 0;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
   text-align: center;
+}
+
+.footer-meta-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 16px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  flex-wrap: wrap;
+}
+
+.footer-copyright {
+  margin: 0;
+  text-align: center;
+  font-size: 0.76rem;
+  color: #6f97ab;
+  letter-spacing: 0.04em;
 }
 
 footer strong {
@@ -920,6 +1118,30 @@ footer p {
   color: #6f97ab;
   font-size: 0.76rem;
   line-height: 1.5;
+}
+
+@media (max-width: 860px) {
+  .footer-highlights {
+    grid-template-columns: 1fr;
+  }
+
+  .footer-meta-row {
+    align-items: flex-start;
+  }
+
+  .footer-links-row {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .footer-copyright {
+    text-align: left;
+    width: 100%;
+  }
+
+  .team-grid {
+    justify-content: flex-start;
+  }
 }
 
 .mobile-bottom-nav {
@@ -1053,6 +1275,20 @@ footer p {
     grid-template-columns: repeat(2, minmax(150px, 1fr));
   }
 
+  .footer-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .team-grid {
+    flex-direction: column;
+    overflow-x: visible;
+  }
+
+  .team-member-card {
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+
   .mobile-bottom-nav {
     position: fixed;
     left: 10px;
@@ -1121,5 +1357,20 @@ footer p {
 
   .disease-tabs {
     grid-template-columns: 1fr;
+  }
+
+  footer {
+    width: min(94vw, 760px);
+    margin-bottom: 110px;
+  }
+
+  .footer-about-card,
+  .footer-team-card {
+    padding: 14px;
+  }
+
+  .footer-links-row {
+    gap: 12px;
+    flex-direction: column;
   }
 }
