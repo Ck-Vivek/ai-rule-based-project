@@ -289,10 +289,39 @@ def diagnose_with_rules(input_symptoms: List[str]) -> Dict[str, Any]:  # Apply e
     symptom_set = {normalize_symptom(item) for item in input_symptoms if item.strip()}  # Normalize selected symptoms into a set.
     matched_rules = []  # Collect all rules that fully match user input.
 
+    # --- DFS ALGORITHM (Depth-First Search) FOR EXPERT SYSTEM BACKWARD CHAINING ---
+    # This DFS function recursively verifies if a specific rule (Disease) is satisfied.
+    # It treats the rule as the 'Goal Node' and its symptoms as 'Sub-Goal Nodes' in a graph.
+    def dfs_match_rule(path_index: int, required_symptoms_list: List[str]) -> bool:
+        # BASE CASE: If the index reaches the length of the list, we have deeply searched
+        # the entire path without failing. This means all required symptoms are completely matched!
+        if path_index >= len(required_symptoms_list):
+            return True  # DFS Path is valid and fully matched successfully.
+
+        # CURRENT NODE: Get the current symptom node we need to evaluate at this depth level.
+        current_symptom_node = required_symptoms_list[path_index]
+
+        # NODE EVALUATION: Check if the user has this symptom in their reported symptom set.
+        if current_symptom_node in symptom_set:
+            # RECURSIVE TRAVERSAL: The symptom is found. The DFS algorithm goes one level deeper
+            # into the graph to evaluate the next symptom node in the path sequence.
+            return dfs_match_rule(path_index + 1, required_symptoms_list)
+        else:
+            # BACKTRACKING: The symptom is missing. This means the current DFS path is invalid.
+            # We return False immediately to stop searching deeper and backtrack to try another rule.
+            return False
+    # --------------------------------------------------------------------------------
+
     for rule in DIAGNOSIS_RULES:  # Evaluate each predefined diagnosis rule.
-        required = {normalize_symptom(item) for item in rule.get("required_symptoms", set())}  # Normalize required symptoms.
-        if required.issubset(symptom_set):  # Rule matches only when all required symptoms are selected.
-            matched_rules.append(rule)  # Save matching rule.
+        # Convert the required symptoms into a list, which defines the path our DFS will traverse.
+        required_list = [normalize_symptom(item) for item in rule.get("required_symptoms", set())]
+        
+        # Start the DFS traversal from the very first symptom node (index 0) of the current rule.
+        is_exact_match = dfs_match_rule(0, required_list)
+        
+        # If the DFS successfully traversed all required symptoms, it's a match.
+        if is_exact_match:
+            matched_rules.append(rule)  # Save the matching rule to our valid path list.
 
     if matched_rules:  # Use strongest matched rule when one or more rules are satisfied.
         matched_rules.sort(key=lambda item: (len(item["required_symptoms"]), item["confidence"]), reverse=True)  # Prefer more specific and higher confidence rules.
